@@ -62,18 +62,38 @@ public class UserDaoImpl extends ConnectionDao implements UserDao {
     @Override
     public boolean addUser(User u) {
         try (Connection c = (Connection) connectToDb();) { //try with resource
-
             PreparedStatement stmt = c.prepareStatement("insert into user(name,surname,email,phone) values(?,?,?,?)");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getSurname());
             stmt.setString(3, u.getEmail());
             stmt.setString(4, u.getPhone());
-
             return stmt.execute();
-
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public User getById(int id) {
+        try (Connection c = (Connection) connectToDb();) {
+
+            Statement stmt = c.createStatement();
+            stmt.execute("select * from user where id=" + id);
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                int user_id = rs.getInt("id");
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                User u = new User(user_id, name, surname, email, phone);
+               return u;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

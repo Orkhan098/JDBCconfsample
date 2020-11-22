@@ -12,13 +12,12 @@ public class Main {
 //        u.setId(1);
 //        u.setName("Orkhan");
 //        userDao.updateUser(u);
-        User user=new User(0,"Widad","Kchikach","widadkc@gmail.com","+2139898399");
-        userDao.addUser(user);
-        System.out.println(userDao.getAllData());
+//        User user=new User(0,"Widad","Kchikach","widadkc@gmail.com","+2139898399");
+//        userDao.addUser(user);
+//        System.out.println(userDao.getAllData());
+        System.out.println(userDao.getById(2));
+
     }
-
-
-
 }
 
 
