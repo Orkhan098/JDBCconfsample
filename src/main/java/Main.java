@@ -11,7 +11,6 @@ public class Main {
 //        User u=new User();
 //        u.setId(1);
 //        u.setName("Orkhan");
-//
 //        userDao.updateUser(u);
         User user=new User(0,"Widad","Kchikach","widadkc@gmail.com","+2139898399");
         userDao.addUser(user);
